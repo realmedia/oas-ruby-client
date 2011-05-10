@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Damian Caruso"]
   s.email       = ["damian.caruso@gmail.com"]
   s.homepage    = "http://github.com/realmedia/ruby-oas"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Ruby wrapper for the OAS API}
+  s.description = %q{Ruby wrapper for the OAS API}
 
   s.rubyforge_project = "oas"
 
@@ -21,4 +21,6 @@ Gem::Specification.new do |s|
   
   s.add_dependency "httpclient", "~> 2.2.0.2"
   s.add_dependency "nokogiri", "~> 1.4.4"
+  
+  s.add_development_dependency "rspec", "~> 2.5.0"
 end
