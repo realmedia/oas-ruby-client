@@ -1,0 +1,6 @@
+*.gem
+.bundle
+.redcar
+.rvmrc
+Gemfile.lock
+pkg/*
