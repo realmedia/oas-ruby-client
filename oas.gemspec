@@ -21,6 +21,8 @@ Gem::Specification.new do |s|
   
   s.add_dependency "httpclient", "~> 2.2.0.2"
   s.add_dependency "nokogiri", "~> 1.4.4"
+  s.add_dependency "savon", "~> 0.9.2"
   
   s.add_development_dependency "rspec", "~> 2.5.0"
+  s.add_development_dependency "webmock", "~> 1.6.2"
 end

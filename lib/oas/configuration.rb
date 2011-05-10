@@ -8,7 +8,7 @@ module Oas
       :password].freeze
     
     # The endpoint that will be used to connect if none is set
-    DEFAULT_ENDPOINT = "https://oas.realmedianetwork.net/oasapi/OaxApi?wsdl".freeze    
+    DEFAULT_ENDPOINT = "https://oas.realmedianetwork.net/oasapi/OaxApi?wsdl".freeze
     
     # The account that will be used to connect if none is set
     DEFAULT_ACCOUNT = "OasDefault"
@@ -26,7 +26,7 @@ module Oas
     end
     
     def configure
-      yield self
+      yield self if block_given?
     end
     
     def options
@@ -36,10 +36,10 @@ module Oas
     end
     
     def reset
-      self.endpoint = DEFAULT_ENDPOINT      
-      self.account  = DEFAULT_ACCOUNT
-      self.username = DEFAULT_USERNAME
-      self.password = DEFAULT_PASSWORD
+      self.endpoint   = DEFAULT_ENDPOINT
+      self.account    = DEFAULT_ACCOUNT
+      self.username   = DEFAULT_USERNAME
+      self.password   = DEFAULT_PASSWORD
     end
   end
 end

@@ -1,5 +1,6 @@
 Dir[File.join(File.dirname(__FILE__),'oas/core_ext/**/*.rb')].each {|f| require f}
 
+require 'oas/version'
 require 'oas/error'
 require 'oas/configuration'
 require 'oas/api'
@@ -7,7 +8,7 @@ require 'oas/client'
 
 module Oas
   extend Configuration
-  
+
   # Alias for Oas::Client.new
   #
   # @return [Oas::Client]
@@ -24,4 +25,7 @@ module Oas
   def self.respond_to?(method, include_private = false)
     client.respond_to?(method, include_private) || super(method, include_private)
   end
+
+  HTTPI.log = false
+  Savon.configure { |c| c.log = false }
 end

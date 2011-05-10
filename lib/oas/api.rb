@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'httpclient'
-require 'soap/wsdlDriver'
+require 'savon'
 
 module Oas
   class Api
@@ -12,7 +12,7 @@ module Oas
         send("#{key}=", options[key])
       end
     end
-    
+
     def request(request_type, &block)
       xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
         xml.AdXML {
@@ -21,8 +21,15 @@ module Oas
           }
         }
       end
-      response = driver.OasXmlRequest(account,username,password,xml.to_xml)
-      response = Hash.from_xml(response.first)[:AdXML][:Response]
+      response = webservice.request :n1, :oas_xml_request, :"xmlns:n1" => "http://api.oas.tfsm.com/" do
+        soap.body = {
+          "String_1" => account.to_s,
+          "String_2" => username.to_s,
+          "String_3" => password.to_s,
+          "String_4" => xml.to_xml
+        }
+      end
+      response = Hash.from_xml(response.to_hash[:oas_xml_request_response][:result])[:AdXML][:Response]
       verify_errors(request_type, response)
       response
     end
@@ -42,12 +49,8 @@ module Oas
       end
     end
     
-    def driver
-      @driver ||= SOAP::WSDLDriverFactory.new(endpoint).create_rpc_driver do |d|
-        d.options["protocol.http.connect_timeout"] = 10.seconds
-        d.options["protocol.http.send_timeout"]    = 10.seconds
-        d.options["protocol.http.receive_timeout"] = 2.minutes
-      end
+    def webservice
+      @webservice ||= Savon::Client.new(endpoint)
     end
   end
 end

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions name="OaxApiService" targetNamespace="http://api.oas.tfsm.com/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://api.oas.tfsm.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+  </types>
+  <message name="OaxApi_OasXmlRequestResponse">
+    <part name="result" type="xsd:string"/>
+  </message>
+  <message name="OaxApi_OasXmlRequest">
+    <part name="String_1" type="xsd:string"/>
+    <part name="String_2" type="xsd:string"/>
+    <part name="String_3" type="xsd:string"/>
+    <part name="String_4" type="xsd:string"/>
+  </message>
+  <portType name="OaxApi">
+    <operation name="OasXmlRequest" parameterOrder="String_1 String_2 String_3 String_4">
+      <input message="tns:OaxApi_OasXmlRequest"/>
+      <output message="tns:OaxApi_OasXmlRequestResponse"/>
+    </operation>
+  </portType>
+  <binding name="OaxApiBinding" type="tns:OaxApi">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="OasXmlRequest">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body namespace="http://api.oas.tfsm.com/" use="literal"/>
+      </input>
+      <output>
+        <soap:body namespace="http://api.oas.tfsm.com/" use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="OaxApiService">
+    <port binding="tns:OaxApiBinding" name="OaxApiPort">
+      <soap:address location="https://oas.realmedianetwork.net:443/oasapi/OaxApi"/>
+    </port>
+  </service>
+</definitions>
