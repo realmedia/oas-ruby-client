@@ -30,13 +30,13 @@ module Oas
         }
       end
       response = Hash.from_xml(response.to_hash[:oas_xml_request_response][:result])[:AdXML][:Response]
-      verify_errors(request_type, response)
+      verify_errors(response)
       response
     end
   
     private
-    def verify_errors(request_type, response)
-      return if (e = response[:Exception]).nil? && (e = response[request_type.to_sym][:Exception]).nil?
+    def verify_errors(response)
+      return if (e = response[:Exception]).nil? && (e = response[response.keys.first][:Exception]).nil?
       error_code = e[:errorCode]
       error_msg  = e[:content]
       case error_code

@@ -55,12 +55,37 @@ Usage Examples
     # Read a site group
     puts Oas.site_group("site_group_id")
 
+    # Reports
+    # StartDate defaults to first time in history
+    # EndDate defaults to Date.today
+
+    # Get advertiser reports
+    puts Oas.advertiser_report("advertiser_id", "Delivery.Advertiser.Base.T602.01,Delivery.Advertiser.Base.T652.01", "2011/01/01", "2011/01/31")
+
+    # Get campaign reports
+    puts Oas.campaign_report("campaign_id", "Delivery.Campaign.Base.T154.01")
+
+    # Get section reports
+    puts Oas.section_report("section_id", "Delivery.Section.Cookie.T358.01")
+
+    # Get site reports
+    puts Oas.site_report("site_id", "Delivery.Site.Base.T258.01")
+
+    # Get Site Performance Reports
+    puts Oas.site_performance_report("site_id, other_site_id", "2011/01/01", "2011/01/31")
+
+    # Get Page Priority Reports
+    puts Oas.page_priority_report("www.247realmedia.com/home")
+
+    # Get Campaigns Status Report
+    puts Oas.campaign_status_report
+
 TODO
 ------------
 
 * Create and update support on Campaign and Database sections.
 * Listings
-* Reports
+* Reach and Frequency Reports
 * Inventory
 
 Copyright

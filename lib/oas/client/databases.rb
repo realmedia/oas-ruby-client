@@ -1,7 +1,7 @@
 module Oas
   class Client
-    # Defines methods related to oas database section
-    module Database
+    # Defines methods related to oas databases section
+    module Databases
       def advertiser(id)
         request("Advertiser") do |xml|
           xml.Database(:action => "read") {
