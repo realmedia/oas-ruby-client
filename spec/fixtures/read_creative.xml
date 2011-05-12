@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <ns1:OasXmlRequestResponse xmlns:ns1="http://api.oas.tfsm.com/">
+      <result>
+        <![CDATA[
+        <?xml version="1.0"?>
+        <AdXML>
+          <Response>
+            <Creative>
+              <CampaignId>campaign_id</CampaignId>
+              <Id>creative_id</Id>
+              <Name>creative01</Name>
+              <Description></Description>
+              <ClickUrl>http://www.google.com</ClickUrl>
+              <Positions>
+                <Position>Bottom</Position>
+                <Position>Left</Position>
+              </Positions>
+              <CreativeTypesId>unknown_type</CreativeTypesId>
+              <Display>Y</Display>
+              <Height>30</Height>
+              <Width>30</Width>
+              <TargetWindow></TargetWindow>
+              <AltText></AltText>
+              <DiscountImpressions>Y</DiscountImpressions>
+              <StartDate>2008-08-29</StartDate>
+              <EndDate>2008-10-01</EndDate>
+              <Weight>70</Weight>
+              <ExpireImmediately>Y</ExpireImmediately>
+              <NoCache>Y</NoCache>
+              <ExtraHTML></ExtraHTML>
+              <ExtraText></ExtraText>
+              <RichMediaCpm>0.0</RichMediaCpm>
+              <BrowserV/>
+              <SequenceNo></SequenceNo>
+              <CountOnDownload>N</CountOnDownload>
+              <File contentType='text/html' fileType='creative' fileName='hi.html'/>
+              <WhoCreated>realmedia</WhoCreated>
+              <WhenCreated>2008-09-03 22:28:14</WhenCreated>
+              <WhoModified>realmedia</WhoModified>
+              <WhenModified>2008-09-03 22:28:14</WhenModified>
+            </Creative>
+          </Response>
+        </AdXML>
+        ]]>
+      </result>
+    </ns1:OasXmlRequestResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

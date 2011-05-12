@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <ns1:OasXmlRequestResponse xmlns:ns1="http://api.oas.tfsm.com/">
+      <result>
+        <![CDATA[
+        <?xml version="1.0"?>
+        <AdXML>
+          <Response>
+             <Advertiser>
+               <Id>advertiser_id</Id>
+               <Organization>A Company Name</Organization>
+               <Notes></Notes>
+               <ContactFirstName></ContactFirstName>
+               <ContactLastName></ContactLastName>
+               <ContactTitle></ContactTitle>
+               <Email></Email>
+               <Phone></Phone>
+               <Fax></Fax>
+               <ExternalUsers/>
+               <BillingInformation>
+                 <Method>
+                  <Code>O</Code>
+                 </Method>
+                 <Address>test address2</Address>
+                 <City>Philadelphia</City>
+                 <State>
+                  <Code>US:PA</Code>
+                 </State>
+                 <Country>
+                  <Code>US</Code>
+                 </Country>
+                 <Zip>20007</Zip>
+                 <Email>testmail@247realmeida.com</Email>
+               </BillingInformation>
+               <WhoCreated>realmedia</WhoCreated>
+               <WhenCreated>01/20/2008 20:59:29</WhenCreated>
+               <WhoModified>realmedia</WhoModified>
+               <WhenModified>01/20/2008 21:22:33</WhenModified>
+             </Advertiser>
+          </Response>
+        </AdXML>
+        ]]>
+      </result>
+    </ns1:OasXmlRequestResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

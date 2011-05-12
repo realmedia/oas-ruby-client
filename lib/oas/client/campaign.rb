@@ -2,7 +2,7 @@ module Oas
   class Client
     # Defines methods related to oas campaigns
     module Campaign
-      def get_campaign(id)
+      def campaign(id)
         request("Campaign") do |xml|
           xml.Campaign(:action => "read") {
             xml.Overview {

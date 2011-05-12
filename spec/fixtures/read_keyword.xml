@@ -9,20 +9,15 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
-              <Sections>
-                <SectionId>Film</SectionId>
-                <SectionId>Television</SectionId>
-              </Sections>
+            <Keyword>
+              <Id>keyword_id</Id>
+              <InternalQuickReport>standard</InternalQuickReport>
+              <ExternalQuickReport>to-date</ExternalQuickReport>
               <WhoCreated>realmedia</WhoCreated>
               <WhenCreated>2008-12-04 21:15:25</WhenCreated>
               <WhoModified></WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </Keyword>
           </Response>
         </AdXML>
         ]]>

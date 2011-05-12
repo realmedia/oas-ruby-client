@@ -9,20 +9,19 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
-              <Sections>
-                <SectionId>Film</SectionId>
-                <SectionId>Television</SectionId>
-              </Sections>
-              <WhoCreated>realmedia</WhoCreated>
-              <WhenCreated>2008-12-04 21:15:25</WhenCreated>
+            <CampaignGroup>
+              <Id>campaign_group_id</Id>
+              <Description>Added via the API</Description>
+              <Notes>This is the Notes field text.</Notes>
+              <ExternalUsers/>
+              <InternalQuickReport>to-date</InternalQuickReport>
+              <ExternalQuickReport>short</ExternalQuickReport>
+              <Campaigns/>
+              <WhoCreated>ducheol</WhoCreated>
+              <WhenCreated>02/20/2009 11:12:58</WhenCreated>
               <WhoModified></WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </CampaignGroup>
           </Response>
         </AdXML>
         ]]>

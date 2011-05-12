@@ -9,20 +9,19 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
-              <Sections>
-                <SectionId>Film</SectionId>
-                <SectionId>Television</SectionId>
-              </Sections>
+            <Notification>
+              <CampaignId>campaign_id</CampaignId>
+              <EventName>event_name</EventName>
+              <DaysBefore>2</DaysBefore>
+              <EmailAddresses>
+                <Email>nobody@247realmedia.com</Email>
+              </EmailAddresses>
+              <WhenMailSent></WhenMailSent>
               <WhoCreated>realmedia</WhoCreated>
-              <WhenCreated>2008-12-04 21:15:25</WhenCreated>
-              <WhoModified></WhoModified>
+              <WhenCreated>2008-12-11 02:09:25</WhenCreated>
+              <WhoModified>realmedia</WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </Notification>
           </Response>
         </AdXML>
         ]]>

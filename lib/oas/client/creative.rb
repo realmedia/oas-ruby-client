@@ -2,7 +2,7 @@ module Oas
   class Client
     # Defines methods related to oas campaign creatives
     module Creative
-      def get_creative(campaign_id, id)
+      def creative(campaign_id, id)
         request("Creative") do |xml|
           xml.Creative(:action => "read") {
             xml.CampaignId campaign_id

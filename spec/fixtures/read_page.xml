@@ -9,11 +9,12 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
+            <Page>
+              <LocationKey>5531</LocationKey>
+              <Url>page_url</Url>
+              <Site>www.mySite.com</Site>
+              <SiteId>MySite</SiteId>
+              <Description>My site</Description>
               <Sections>
                 <SectionId>Film</SectionId>
                 <SectionId>Television</SectionId>
@@ -22,7 +23,7 @@
               <WhenCreated>2008-12-04 21:15:25</WhenCreated>
               <WhoModified></WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </Page>
           </Response>
         </AdXML>
         ]]>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soapenv:Body>
+    <ns1:OasXmlRequestResponse xmlns:ns1="http://api.oas.tfsm.com/">
+      <result>
+        <![CDATA[
+        <?xml version="1.0"?>
+        <AdXML>
+          <Response>
+            <SiteGroup>
+              <Id>site_group_id</Id>
+              <Description>apitestdescriptionUpdated</Description>
+              <Sites>
+                <SiteId>EUAPISite1</SiteId>
+              </Sites>
+              <Notes>ApiTestNotes1234Updated</Notes>
+              <ExternalUsers/>
+              <InternalQuickReport>short</InternalQuickReport>
+              <ExternalQuickReport>to-date</ExternalQuickReport>
+              <WhoCreated>realmedia</WhoCreated>
+              <WhenCreated>01/21/2008 17:35:57</WhenCreated>
+              <WhoModified>realmedia</WhoModified>
+              <WhenModified>01/21/2008 17:46:47</WhenModified>
+            </SiteGroup>
+          </Response>
+        </AdXML>
+        ]]>
+      </result>
+    </ns1:OasXmlRequestResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

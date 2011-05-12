@@ -8,7 +8,7 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   config.include WebMock::API
-  config.before(:all) { stub_wsdl }
+  config.before(:each) { stub_wsdl }
   config.after(:each) { Oas.reset }
 end
 

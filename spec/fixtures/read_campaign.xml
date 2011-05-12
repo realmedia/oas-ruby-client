@@ -11,7 +11,7 @@
           <Response>
             <Campaign>
               <Overview>
-                <Id>default_campaign_id</Id>
+                <Id>campaign_id</Id>
                 <AdvertiserId>AnuncianteA</AdvertiserId>
                 <Name>default_campaign_name</Name>
                 <AgencyId>AgencyId</AgencyId>

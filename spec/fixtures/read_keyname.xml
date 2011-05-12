@@ -9,20 +9,17 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
-              <Sections>
-                <SectionId>Film</SectionId>
-                <SectionId>Television</SectionId>
-              </Sections>
+            <Keyname>
+              <Name>keyname_name</Name>
+              <Values>
+                <Value>webservice</Value>
+                <Value>OAS API</Value>
+              </Values>
               <WhoCreated>realmedia</WhoCreated>
               <WhenCreated>2008-12-04 21:15:25</WhenCreated>
               <WhoModified></WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </Keyname>
           </Response>
         </AdXML>
         ]]>

@@ -9,20 +9,18 @@
         <?xml version="1.0"?>
         <AdXML>
           <Response>
-            <Site>
-              <Id>site_id</Id>
-              <Name>My Site</Name>
-              <Domain>www.mySite.com</Domain>
-              <Notes>This is being used to test the Notes field</Notes>
-              <Sections>
-                <SectionId>Film</SectionId>
-                <SectionId>Television</SectionId>
-              </Sections>
+            <Section>
+              <Id>section_id</Id>
+              <Pages>
+                <Url>www.spiderman.com/mutation</Url>
+                <Url>www.hulk.com/powers</Url>
+                <Url>www.spiderman.com</Url>
+              </Pages>
               <WhoCreated>realmedia</WhoCreated>
               <WhenCreated>2008-12-04 21:15:25</WhenCreated>
               <WhoModified></WhoModified>
               <WhenModified></WhenModified>
-            </Site>
+            </Section>
           </Response>
         </AdXML>
         ]]>
