@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Damian Caruso"]
   s.email       = ["damian.caruso@gmail.com"]
   s.homepage    = "http://github.com/realmedia/ruby-oas"
-  s.summary     = %q{Ruby wrapper for the OAS API}
-  s.description = %q{Ruby wrapper for the OAS API}
+  s.summary     = %q{Ruby wrapper for the OAS 7.4 API}
+  s.description = %q{Ruby wrapper for the OAS 7.4 API}
 
   s.rubyforge_project = "oas"
 
