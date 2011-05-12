@@ -66,4 +66,4 @@ TODO
 Copyright
 ---------
 Copyright (c) 2011 Realmedia LatinAmerica.
-See [LICENSE](https://github.com/realmedia/oas/blob/master/LICENSE) for details.
+See [LICENSE](https://github.com/realmedia/ruby-oas/blob/master/LICENSE) for details.
