@@ -80,6 +80,15 @@ Usage Examples
     # Get Campaigns Status Report
     puts Oas.campaign_status_report
 
+    #Execute not implemented request
+    puts Oas.client.request('Site') do |xml|
+      xml.Database(:action => 'list') {
+        xml.SearchCriteria {
+          xml.Id "%"
+        }
+      }
+    end.inspect
+
 TODO
 ------------
 
