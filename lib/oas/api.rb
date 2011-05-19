@@ -36,7 +36,7 @@ module Oas
   
     private
     def verify_errors(response)
-      return if (e = response[:Exception]).nil? && (e = response[response.keys.first][:Exception]).nil?
+      return if ((e = response[:Exception]).nil? && (!response[response.keys.first].is_a?(Hash) || (e = response[response.keys.first][:Exception]).nil?))
       error_code = e[:errorCode]
       error_msg  = e[:content]
       case error_code
