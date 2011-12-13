@@ -1,6 +1,6 @@
 module Oas
   module Configuration
-    # An array of valid keys in the options hash when configuring a {Twitter::Client}
+    # An array of valid keys in the options hash when configuring a {Oas::Client}
     VALID_OPTIONS_KEYS = [
       :endpoint,      
       :account,
@@ -8,7 +8,7 @@ module Oas
       :password].freeze
     
     # The endpoint that will be used to connect if none is set
-    DEFAULT_ENDPOINT = "https://oas.realmedianetwork.net/oasapi/OaxApi?wsdl".freeze
+    DEFAULT_ENDPOINT = "https://oas.realmediadigital.com/oasapi/OaxApi?wsdl".freeze
     
     # The account that will be used to connect if none is set
     DEFAULT_ACCOUNT = "OasDefault"
