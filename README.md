@@ -7,6 +7,9 @@ Ruby wrapper for OAS 7.4 API
 
 Installation
 ------------
+
+OAS is available through [Rubygems](http://rubygems.org/gems/ruby-oas) and can be installed via:
+
     gem install oas
 
 Usage Examples
