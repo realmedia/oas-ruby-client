@@ -1,6 +1,9 @@
-OAS API Ruby Gem
-====================
-A Ruby wrapper for OAS 7.4 API
+OAS API Ruby Gem [![Build Status](https://secure.travis-ci.org/realmedia/ruby-oas.png)][travis] [![Dependency Status](https://gemnasium.com/realmedia/ruby-oas.png?travis)][gemnasium]
+================
+Ruby wrapper for OAS 7.4 API
+
+[travis]: http://travis-ci.org/realmedia/ruby-oas
+[gemnasium]: https://gemnasium.com/realmedia/ruby-oas
 
 Installation
 ------------
