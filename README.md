@@ -17,7 +17,7 @@ Usage Example
     require "oas"
 
     # All requests require authentication.
-    Oas.configure do |config|
+    OAS.configure do |config|
       config.endpoint = WSDL_URI
       config.account  = YOUR_OAS_ACCOUNT
       config.username = YOUR_USERNAME
@@ -25,7 +25,7 @@ Usage Example
     end
 
     # Execute API request
-    puts Oas.client.request('Site') do |xml|
+    puts OAS.client.request('Site') do |xml|
       xml.Database(:action => 'list') {
         xml.SearchCriteria {
           xml.Id "%"
