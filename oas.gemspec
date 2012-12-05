@@ -4,13 +4,13 @@ require "oas/version"
 
 Gem::Specification.new do |s|
   s.name        = "oas"
-  s.version     = Oas::VERSION
+  s.version     = OAS::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Damian Caruso"]
   s.email       = ["damian.caruso@gmail.com"]
-  s.homepage    = "http://github.com/realmedia/ruby-oas"
-  s.summary     = %q{Ruby wrapper for the OAS 7.4 API}
-  s.description = %q{Ruby wrapper for the OAS 7.4 API}
+  s.homepage    = "http://github.com/realmedia/oas-ruby-client"
+  s.summary     = %q{Ruby client for the OpenAdstream API}
+  s.description = %q{Ruby client for the OpenAdstream API}
 
   s.rubyforge_project = "oas"
 
@@ -19,11 +19,12 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
-  s.add_dependency "httpclient", "~> 2.2.0.2"
-  s.add_dependency "nokogiri", "~> 1.4.4"
-  s.add_dependency "savon", "~> 0.9.2"
+  s.add_dependency "httpclient", "~> 2.3"
+  s.add_dependency "nokogiri", "~> 1.5"
+  s.add_dependency "savon", "~> 1.2"
+  s.add_dependency "nori", "~> 1.1"
   
-  s.add_development_dependency "rake", "~> 0.9.2.2"
-  s.add_development_dependency "rspec", "~> 2.5.0"
-  s.add_development_dependency "webmock", "~> 1.6.2"
+  s.add_development_dependency "minitest", "~> 4.3"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "simplecov"
 end

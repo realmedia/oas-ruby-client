@@ -1,6 +1,6 @@
-module Oas
+module OAS
   module Configuration
-    # An array of valid keys in the options hash when configuring a {Oas::Client}
+    # An array of valid keys in the options hash when configuring a {OAS::Client}
     VALID_OPTIONS_KEYS = [
       :endpoint,      
       :account,
@@ -22,7 +22,7 @@ module Oas
     attr_accessor *VALID_OPTIONS_KEYS
     
     def self.extended(base)
-      base.reset
+      base.reset!
     end
     
     def configure
@@ -35,7 +35,7 @@ module Oas
       options
     end
     
-    def reset
+    def reset!
       self.endpoint   = DEFAULT_ENDPOINT
       self.account    = DEFAULT_ACCOUNT
       self.username   = DEFAULT_USERNAME

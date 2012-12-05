@@ -1,8 +1,11 @@
 require 'bundler'
 Bundler::GemHelper.install_tasks
 
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new('spec')
+require 'rake/testtask'
+Rake::TestTask.new do |t|
+  t.libs = ["test"]
+  t.verbose = true
+  t.test_files = FileList['test/**/test_*.rb']
+end
 
-task :test => :spec
-task :default => :spec
+task :default => :test

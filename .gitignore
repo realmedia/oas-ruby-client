@@ -1,6 +1,6 @@
 *.gem
 .bundle
-.redcar
-.rvmrc
 Gemfile.lock
-pkg/*
+coverage
+doc/
+pkg/

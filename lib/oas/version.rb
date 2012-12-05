@@ -1,3 +1,3 @@
-module Oas
-  VERSION = "0.1.2"
+module OAS
+  VERSION = "1.0.0"
 end
