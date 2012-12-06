@@ -22,8 +22,8 @@ module OAS
     def request(msg)
       raise ArgumentError.new("msg argument must respond to to_xml") unless msg.respond_to?(:to_xml)
       body = Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", msg.to_xml]
-      response = soap_client.request :n1, :oas_xml_request, Hash["xmlns:n1", "http://api.oas.tfsm.com/", :body, body]
-      Nori.parse(response.to_hash[:oas_xml_request_response][:result])
+      res  = soap_client.request :n1, :oas_xml_request, Hash["xmlns:n1", "http://api.oas.tfsm.com/", :body, body]
+      Nori.parse res.hash[:Envelope][:Body][:OasXmlRequestResponse][:result]
     end
   end
 end
