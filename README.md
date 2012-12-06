@@ -24,14 +24,20 @@ Usage Example
       config.password = YOUR_PASSWORD
     end
 
-    # Execute API request
-    puts OAS.client.request('Site') do |xml|
-      xml.Database(:action => 'list') {
-        xml.SearchCriteria {
-          xml.Id "%"
+    # List all sites
+    xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      xml.AdXML {
+        xml.Request(:type => 'Site') {
+          xml.Database(:action => 'list') {
+            xml.SearchCriteria {
+              xml.Id "%"
+            }
+          }
         }
       }
-    end.inspect
+    end
+
+    puts OAS.client.request(xml).inspect
 
 Copyright
 ---------
