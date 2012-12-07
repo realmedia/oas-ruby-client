@@ -25,7 +25,7 @@ Usage Example
     end
 
     # List all sites
-    xml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+    puts OAS.client.request do |xml|
       xml.AdXML {
         xml.Request(:type => 'Site') {
           xml.Database(:action => 'list') {
@@ -35,9 +35,7 @@ Usage Example
           }
         }
       }
-    end
-
-    puts OAS.client.request(xml).inspect
+    end.to_xml
 
 Copyright
 ---------
