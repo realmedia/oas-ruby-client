@@ -8,7 +8,7 @@ module OAS
       :password].freeze
     
     # The endpoint that will be used to connect if none is set
-    DEFAULT_ENDPOINT = "https://oas.realmediadigital.com/oasapi/OaxApi?wsdl".freeze
+    DEFAULT_ENDPOINT = "https://oas.realmediadigital.com/oasapi/OaxApi".freeze
     
     # The account that will be used to connect if none is set
     DEFAULT_ACCOUNT = "OasDefault"

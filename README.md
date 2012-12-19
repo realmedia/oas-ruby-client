@@ -16,16 +16,16 @@ Usage Example
 --------------
     require "oas"
 
-    # All requests require authentication.
+    # Configure OAS
     OAS.configure do |config|
-      config.endpoint = WSDL_URI
-      config.account  = YOUR_OAS_ACCOUNT
-      config.username = YOUR_USERNAME
-      config.password = YOUR_PASSWORD
+      config.endpoint = OAS_ENDPOINT
+      config.account  = OAS_ACCOUNT
+      config.username = OAS_USERNAME
+      config.password = OAS_PASSWORD
     end
 
-    # List all sites
-    puts OAS.client.request do |xml|
+    # Build OAS message (Ex: Nokogiri)
+    msg = Nokogiri::XML::Builder.new(:encoding => "utf-8") do |xml|
       xml.AdXML {
         xml.Request(:type => 'Site') {
           xml.Database(:action => 'list') {
@@ -35,7 +35,11 @@ Usage Example
           }
         }
       }
-    end.to_xml
+    end
+
+    # Make request
+    puts OAS.client.request(msg)
+    *"<AdXML><Response>.....</Response></AdXML>"*
 
 Copyright
 ---------

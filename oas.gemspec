@@ -20,11 +20,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_dependency "httpclient", "~> 2.3"
-  s.add_dependency "nokogiri", "~> 1.5"
-  s.add_dependency "savon", "~> 1.2"
-  s.add_dependency "nori", "~> 1.1"
+  s.add_dependency "savon", "~> 2.0"
   
   s.add_development_dependency "minitest", "~> 4.3"
+  s.add_development_dependency "webmock", "~> 1.9"
   s.add_development_dependency "rake"
   s.add_development_dependency "simplecov"
 end
