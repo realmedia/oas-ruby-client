@@ -1,5 +1,4 @@
 require 'nori'
-require 'nokogiri'
 
 module OAS
   class Response
