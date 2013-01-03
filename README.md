@@ -15,6 +15,7 @@ Installation
 Usage Example
 --------------
     require "oas"
+    require "pp"
 
     # Configure OAS
     OAS.configure do |config|
@@ -38,8 +39,7 @@ Usage Example
     end
 
     # Make request
-    puts OAS.client.request(msg)
-    *"<AdXML><Response>.....</Response></AdXML>"*
+    pp OAS.client.request(msg).to_hash
 
 Copyright
 ---------
