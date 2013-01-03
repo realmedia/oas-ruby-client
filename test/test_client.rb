@@ -43,6 +43,7 @@ class TestClient < MiniTest::Unit::TestCase
   def test_correctly_parse_soap_response
     stub_request(:post, @client.endpoint.to_s)
       .to_return(:status => 200, :body => fixture("successful_response.xml"))
-    assert_kind_of String, @client.request("<AdXML></AdXML>")
+    res = @client.request("<AdXML></AdXML>")
+    assert_kind_of OAS::Response, res
   end
 end

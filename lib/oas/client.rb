@@ -1,5 +1,6 @@
 require 'httpclient'
 require 'savon'
+require 'oas/response'
 
 module OAS
   class Client   
@@ -26,7 +27,7 @@ module OAS
     def request(msg)
       doc = msg.respond_to?(:to_xml) ? msg.to_xml : msg
       res = driver.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", doc.to_s]
-      res.body[:oas_xml_request_response][:result]
+      OAS::Response.new(res.body[:oas_xml_request_response][:result])
     rescue Savon::SOAPFault => e
       raise e.to_hash[:fault][:faultstring]
     rescue Savon::HTTPError => e
