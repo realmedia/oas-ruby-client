@@ -1,4 +1,3 @@
-require 'httpclient'
 require 'savon'
 require 'oas/response'
 
