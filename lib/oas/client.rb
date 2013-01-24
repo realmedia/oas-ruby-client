@@ -37,15 +37,15 @@ module OAS
     def raise_http_error!(e)
       case e.http.code
       when 403
-        raise OAS::Error::Forbidden.new
+        raise OAS::Error::HTTP::Forbidden.new
       when 500
-        raise OAS::Error::InternalServerError.new
+        raise OAS::Error::HTTP::InternalServerError.new
       when 503
-        raise OAS::Error::ServiceUnavailable.new
+        raise OAS::Error::HTTP::ServiceUnavailable.new
       when 504
-        raise OAS::Error::GatewayTimeout.new
+        raise OAS::Error::HTTP::GatewayTimeout.new
       else
-        raise OAS::Error.new(e.to_s)
+        raise OAS::Error::HTTP.new(e.to_s)
       end
     end
 

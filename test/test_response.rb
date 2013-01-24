@@ -25,7 +25,7 @@ class TestResponse < MiniTest::Unit::TestCase
     </AdXML>
     EOXML
 
-    assert_raises OAS::Error do
+    assert_raises OAS::Error::DuplicateId do
       res = OAS::Response.new(doc)
     end
   end

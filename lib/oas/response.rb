@@ -26,7 +26,16 @@ module OAS
     def validate!
       errors = @doc.xpath('//AdXML/Response//Exception')
       return if errors.empty?
-      raise OAS::Error.new(errors.first.text)
+      error = errors.first
+
+      case error['errorCode'].to_i
+      when 512,514
+        raise OAS::Error::DuplicateId.new(error.text)
+      when 531..575
+        raise OAS::Error::Invalid.new(error.text)
+      else
+        raise OAS::Error.new(error.text)
+      end
     end
   end
 end
