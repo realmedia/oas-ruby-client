@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
-  s.add_dependency "httpclient", "~> 2.3"
+  s.add_dependency "nokogiri", "~> 1.5"
   s.add_dependency "savon", "~> 2.0"
   s.add_dependency "nori", "~> 2.0"
   

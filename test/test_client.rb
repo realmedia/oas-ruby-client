@@ -40,7 +40,7 @@ class TestClient < MiniTest::Unit::TestCase
     @client.driver.verify
   end
 
-  def test_correctly_parse_soap_response
+  def test_return_response_object
     stub_request(:post, @client.endpoint.to_s)
       .to_return(:status => 200, :body => fixture("successful_response.xml"))
     res = @client.request("<AdXML></AdXML>")

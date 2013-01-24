@@ -1,3 +1,4 @@
+require 'nokogiri'
 require 'nori'
 
 module OAS
@@ -5,7 +6,8 @@ module OAS
     attr_writer :parser
 
     def initialize(doc)
-      @doc = doc
+      @doc = Nokogiri.XML(doc)
+      validate!
     end
 
     def parser
@@ -13,19 +15,18 @@ module OAS
     end
 
     def to_s
-      raw
-    end
-
-    def raw
-      @raw ||= begin 
-        raw = ""
-        @doc.each_line { |l| raw << l.strip }
-        raw
-      end
+      @doc.to_xml
     end
 
     def to_hash
-      parser.parse(raw)
+      @hash ||= parser.parse(@doc.to_xml)
+    end
+  
+  private
+    def validate!
+      errors = @doc.xpath('//AdXML/Response//Exception')
+      return if errors.empty?
+      raise OAS::Error.new(errors.first.text)
     end
   end
 end

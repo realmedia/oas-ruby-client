@@ -1,3 +1,5 @@
+require 'oas/core_ext'
+require 'oas/error'
 require 'oas/configuration'
 require 'oas/client'
 
