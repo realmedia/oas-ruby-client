@@ -1,0 +1,1 @@
+require "oas/core_ext/string"
