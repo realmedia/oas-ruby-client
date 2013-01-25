@@ -13,12 +13,16 @@ class Page < OAS::Model
   identifier :Url
 end
 
+class Advertiser < OAS::Model
+  attribute :Name
+end
+
 class Campaign < OAS::Model
-  attribute :AdvertiserId
+  reference :Advertiser
   attribute :ScheduledImpressions, lambda { |v| v.to_i }
 end
 
-class TestObject < MiniTest::Unit::TestCase
+class TestModel < MiniTest::Unit::TestCase
   def test_identifier_defaults_to_id
     site = Site.new
     site.id = "github"
@@ -41,11 +45,6 @@ class TestObject < MiniTest::Unit::TestCase
   def test_ignore_assigment_of_undefined_attributes
     site = Site.new(:Owner => "Jhon Doe")
     assert !site.attrs.has_key?(:Owner)
-  end
-
-  def test_respond_to_snakecase_attribute_names
-    campaign = Campaign.new(:AdvertiserId => "realmedia_la_llc")
-    assert_equal "realmedia_la_llc", campaign.advertiser_id
   end
 
   def test_load_model_by_identifier
@@ -106,5 +105,14 @@ class TestObject < MiniTest::Unit::TestCase
     page.save
     refute_nil page.created_at
     assert !page.new?
+  end
+
+  def test_association_reference
+    a = Advertiser.new(:Id => "realmedia")
+    c = Campaign.new(:Id => "test_campaign", :Advertiser => a)
+
+    assert_equal a, c.advertiser
+    assert_equal a.id, c.advertiser_id
+    assert c.attrs.has_key?(:AdvertiserId)
   end
 end

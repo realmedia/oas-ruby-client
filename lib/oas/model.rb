@@ -20,16 +20,8 @@ module OAS
         define_method(name) do
           cast[@attrs[name]]
         end
-
-        define_method(name.to_s.snakecase) do
-          cast[@attrs[name]]
-        end
       else
         define_method(name) do
-          @attrs[name]
-        end
-
-        define_method(name.to_s.snakecase) do
           @attrs[name]
         end
       end
@@ -38,9 +30,43 @@ module OAS
         @attrs[name] = value
       end
 
-      define_method(:"#{name.to_s.snakecase}=") do |value|
-        @attrs[name] = value
+      alias_attribute(name.to_s.snakecase, name)
+    end
+
+    def self.alias_attribute(name, original)
+      class_eval <<-RUBY
+        alias #{name}  #{original}
+        alias #{name}= #{original}=
+      RUBY
+    end
+
+    def self.reference(name)
+      reader = :"#{name}Id"
+      writer = :"#{name}Id="
+
+      define_method(reader) do
+        @attrs[reader]
       end
+
+      define_method(writer) do |value|
+        @_memo.delete(name)
+        @attrs[reader] = value
+      end
+
+      define_method(:"#{name}=") do |value|
+        send(writer, value ? value.id : nil)
+        @_memo[name] = value
+      end
+
+      define_method(name) do
+        @_memo[name] ||= begin
+          model = self.class.const_get(name)
+          model[send(reader)]
+        end
+      end
+
+      alias_attribute(reader.to_s.snakecase, reader)
+      alias_attribute(name.to_s.snakecase, name)
     end
 
     def self.identifier(name = nil)
@@ -58,6 +84,7 @@ module OAS
 
     def initialize(attrs = {})
       @attrs = {}
+      @_memo = {}
       update_attributes(attrs)
     end
 
@@ -159,12 +186,7 @@ module OAS
     end
 
     def _model_name
-      str = self.class.name.to_s
-      if i = str.rindex('::')
-        str[(i+2)..-1]
-      else
-        str
-      end
+      self.class.name.to_s.gsub(/^.*::/, '')
     end
   end
 end
