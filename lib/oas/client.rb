@@ -2,7 +2,7 @@ require 'savon'
 require 'oas/response'
 
 module OAS
-  class Client   
+  class Client
     attr_accessor *Configuration::VALID_OPTIONS_KEYS
     attr_writer :driver
 
@@ -19,7 +19,8 @@ module OAS
         client.namespace "http://api.oas.tfsm.com/"
         client.namespace_identifier :n1
         client.convert_request_keys_to :camelcase
-        client.log false
+        client.logger logger
+        client.log !!logger
       end
     end
 

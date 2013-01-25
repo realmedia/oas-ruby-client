@@ -5,7 +5,8 @@ module OAS
       :endpoint,      
       :account,
       :username,
-      :password].freeze
+      :password,
+      :logger].freeze
     
     # The endpoint that will be used to connect if none is set
     DEFAULT_ENDPOINT = "https://oas.realmediadigital.com/oasapi/OaxApi".freeze
@@ -40,6 +41,7 @@ module OAS
       self.account    = DEFAULT_ACCOUNT
       self.username   = DEFAULT_USERNAME
       self.password   = DEFAULT_PASSWORD
+      self.logger     = nil
     end
   end
 end
