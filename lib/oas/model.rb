@@ -102,6 +102,13 @@ module OAS
       self.class.client
     end
 
+    def valid?
+      errors.clear
+      assert_present self.class.identifier
+      validate
+      errors.empty?
+    end
+
     def attrs
       @attrs
     end
@@ -139,10 +146,6 @@ module OAS
 
     def created_at
       @created_at
-    end
-
-    def validate
-      assert_present self.class.identifier
     end
 
   private
