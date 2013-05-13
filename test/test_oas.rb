@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestOas < MiniTest::Unit::TestCase
+class TestOAS < MiniTest::Test
 
   describe "#configure" do
     OAS::Configuration::VALID_OPTIONS_KEYS.each do |key|

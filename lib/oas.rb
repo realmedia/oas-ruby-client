@@ -6,6 +6,14 @@ require 'oas/client'
 module OAS
   extend Configuration
 
+  def self.network?
+    @network
+  end
+
+  def self.network=(bool)
+    @network = !!bool
+  end
+
   def self.client(options={})
     @client ||= OAS::Client.new(options)
   end

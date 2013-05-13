@@ -1,7 +1,7 @@
 require 'helper'
 require 'webmock'
 
-class TestClient < MiniTest::Unit::TestCase
+class TestClient < MiniTest::Test
   include WebMock::API
 
   def setup

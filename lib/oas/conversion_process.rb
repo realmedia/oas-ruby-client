@@ -4,10 +4,10 @@ module OAS
   class ConversionProcess < Model
     identifier :Name
     attribute :ConversionProcessType
-    attribute :NumberOfSteps, Type::Integer
-    attribute :ClickLookBackWindow, Type::Integer
+    attribute :NumberOfSteps,            Type::Integer
+    attribute :ClickLookBackWindow,      Type::Integer
     attribute :ImpressionLookBackWindow, Type::Integer
-    attribute :Cpa, Type::Float
+    attribute :Cpa,                      Type::Float
 
     reference :Advertiser
 

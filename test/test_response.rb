@@ -1,6 +1,6 @@
 require 'helper'
 
-class TestResponse < MiniTest::Unit::TestCase
+class TestResponse < MiniTest::Test
   def test_convert_to_hash
     doc = <<-EOXML
     <AdXML>

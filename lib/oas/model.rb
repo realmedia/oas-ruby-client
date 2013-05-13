@@ -149,6 +149,9 @@ module OAS
     end
 
   private
+    def attribute_present?(att)
+      !send(att).to_s.empty?
+    end
 
     def _created_at_value(attrs)
       attrs[:WhenCreated]
@@ -168,9 +171,7 @@ module OAS
                 if action == :read
                   xml.send(self.class.identifier, id)
                 else
-                  attrs.each do |k,v|
-                    xml.send(k, v)
-                  end
+                  _attrs_to_xml(attrs, xml)
                 end
               }
             }
@@ -186,6 +187,19 @@ module OAS
           end
         }
       end.to_xml
+    end
+
+    def _attrs_to_xml(attrs = {}, builder = Nokogiri::XML::Builder.new(:encoding => "utf-8"))
+      attrs.each do |k,v|
+        if v.kind_of?(::Hash)
+          builder.send(k) {
+            _attrs_to_xml(v, builder)
+          }
+        else
+          builder.send(k, v)
+        end
+      end
+      builder
     end
 
     def _model_name

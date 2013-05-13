@@ -22,7 +22,7 @@ class Campaign < OAS::Model
   attribute :ScheduledImpressions, lambda { |v| v.to_i }
 end
 
-class TestModel < MiniTest::Unit::TestCase
+class TestModel < MiniTest::Test
   def test_identifier_defaults_to_id
     site = Site.new
     site.id = "github"
