@@ -4,7 +4,6 @@ require 'oas/response'
 module OAS
   class Client
     attr_accessor *Configuration::VALID_OPTIONS_KEYS
-    attr_writer :driver
 
     def initialize(options={})
       options = OAS.options.merge(options)
@@ -23,19 +22,21 @@ module OAS
         client.log !!logger
       end
     end
+    attr_writer :driver
 
     def request(msg)
       doc = msg.respond_to?(:to_xml) ? msg.to_xml : msg
       res = driver.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", doc.to_s]
       OAS::Response.new(res.body[:oas_xml_request_response][:result])
     rescue Savon::HTTPError => e
-      raise_http_error!(e)
+      _raise_http_error!(e)
     rescue Savon::InvalidResponseError => e
       raise OAS::Error.new(e.message)
     end
 
-  private
-    def raise_http_error!(e)
+    private
+
+    def _raise_http_error!(e)
       case e.http.code
       when 403
         raise OAS::Error::HTTP::Forbidden.new

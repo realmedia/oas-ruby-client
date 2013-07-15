@@ -3,16 +3,24 @@ require 'nori'
 
 module OAS
   class Response
-    attr_writer :parser
+    class Error < OAS::Error
+      attr_reader :error_code
+
+      def initialize(error_code, message)
+        @error_code = error_code
+        super(message)
+      end
+    end
 
     def initialize(doc)
       @doc = Nokogiri.XML(doc)
-      validate!
+      _validate!
     end
 
     def parser
       @parser ||= Nori.new(:advanced_typecasting => false, :convert_tags_to => lambda { |tag| tag.to_sym })
     end
+    attr_writer :parser
 
     def to_s
       @doc.to_xml
@@ -22,20 +30,13 @@ module OAS
       @hash ||= parser.parse(@doc.to_xml)
     end
   
-  private
-    def validate!
+    private
+
+    def _validate!
       errors = @doc.xpath('//AdXML/Response//Exception')
       return if errors.empty?
       error = errors.first
-
-      case error['errorCode'].to_i
-      when 512,514
-        raise OAS::Error::DuplicateId.new(error.text)
-      when 531..575
-        raise OAS::Error::Invalid.new(error.text)
-      else
-        raise OAS::Error.new(error.text)
-      end
+      raise OAS::Response::Error.new(error['errorCode'].to_i, error.text)
     end
   end
 end

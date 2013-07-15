@@ -1,20 +1,12 @@
 require 'helper'
-require 'webmock'
 
-class TestClient < MiniTest::Test
-  include WebMock::API
-
+class TestClient < MiniTest::Unit::TestCase
   def setup
-    OAS.reset!
     @client = OAS::Client.new
   end
 
   def teardown
-    WebMock.reset!
-  end
-
-  def fixture(file)
-    File.new(File.join(File.expand_path("../fixtures", __FILE__), file))
+    OAS.reset!
   end
 
   def test_call_with_string_xml
@@ -41,9 +33,15 @@ class TestClient < MiniTest::Test
   end
 
   def test_return_response_object
-    stub_request(:post, @client.endpoint.to_s)
-      .to_return(:status => 200, :body => fixture("successful_response.xml"))
-    res = @client.request("<AdXML></AdXML>")
-    assert_kind_of OAS::Response, res
+    mock_driver = Class.new do
+      def call(*args)
+        Class.new do
+          def body; { :oas_xml_request_response => { :result => "<AdXML></AdXML>" } } end
+        end.new
+      end
+    end.new
+
+    @client.driver = mock_driver
+    assert_kind_of OAS::Response, @client.request("<AdXML></AdXML>")
   end
 end
