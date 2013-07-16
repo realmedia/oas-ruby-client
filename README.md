@@ -35,42 +35,53 @@ client = OAS::Client.new(
   :password => "oas_password"
 )
 ```
-Requests should be created using an `OAS::Request` object. Each request type will yield a `Nokogiri::XML::Builder` object.
+Requests should be created using an `OAS::AdXML` object. Each request type will yield a `Nokogiri::XML::Builder` object.
 
 ```ruby
-request = OAS::Request.new
-request.Advertiser do |req|
-  req.Database(:action => 'read') {
-    req.Advertiser {
-      req.Id "DPadvtest"
+doc = OAS::AdXML.new
+doc.request do |req|
+  req.Advertiser do |xml|
+    xml.Database(:action => 'read') {
+      xml.Advertiser {
+        xml.Id "DPadvtest"
+      }
     }
-  }
+  end
 end
 ```
-Multiple requests can be chained in the same call.
+Multiple requests can be sent in the same call.
 
 ```ruby
-request = OAS::Request.new
-request.Site do |req|
-  req.Database(:action => 'read') {
-    req.Site {
-      req.Id "247media"
+doc = OAS::AdXML.new
+doc.request do |req|
+  req.Site do |xml|
+    xml.Database(:action => "read") {
+      xml.Site {
+        xml.Id "247media"
+      }
     }
-  }
-end
-request.Site do |req|
-  req.Database(:action => 'read') {
-    req.Site {
-      req.Id "realmedia"
+  end
+  req.Site do |xml|
+    xml.Database(:action => "read") {
+      xml.Site {
+        xml.Id "realmedia"
+      }
     }
-  }
+  end
 end
 ```
 Executing the request
 
 ```ruby
-response = OAS.execute(request) # or client.execute(request)
-response.to_hash
+adxml = OAS.execute(doc) # or client.execute(doc)
+adxml.each_response do |res|
+  if res.success?
+    # res.to_hash
+  else
+    # res.error_code
+    # res.error_text
+  end
+end
 ```
 
 ## Copyright

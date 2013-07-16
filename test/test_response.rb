@@ -1,37 +1,34 @@
 require 'helper'
 
-class TestResponse < MiniTest::Unit::TestCase
-  def setup
-    doc = <<-EOXML
-    <AdXML>
-      <Response>
-      </Response>
-    </AdXML>
+class TestAdXMLResponse < MiniTest::Unit::TestCase
+  def test_successful_response
+    node = <<-EOXML
+    <Response>
+      <Campaign>
+        <Overview>
+          <Id>DPtestcampaign-01</Id>
+        </Overview>
+      </Campaign>
+    </Response>
     EOXML
-
-    @response = OAS::Response.new(doc)
+    res = OAS::AdXML::Response.new Nokogiri.XML(node)
+    assert res.to_hash.has_key?(:Response)
+    assert res.success?
+    assert_nil res.error_code
+    assert_nil res.error_text
   end
 
-  def test_convert_to_hash
-    assert @response.to_hash.has_key?(:AdXML)
-    assert @response.to_hash[:AdXML].has_key?(:Response)
-  end
-
-  def test_raise_response_error
-    doc = <<-EOXML
-    <AdXML>
-      <Response>
-        <Campaign>
-          <Exception errorCode="512">Campaign ID already exists in Open AdStream</Exception>
-        </Campaign>
-      </Response>
-    </AdXML>
+  def test_unsuccessful_response
+    node = <<-EOXML
+    <Response>
+      <Campaign>
+        <Exception errorCode="512">Campaign ID already exists in Open AdStream</Exception>
+      </Campaign>
+    </Response>
     EOXML
-
-    e = assert_raises OAS::Response::Error do 
-      OAS::Response.new(doc)
-    end
-    assert_equal 512, e.error_code
-    assert_equal 'Campaign ID already exists in Open AdStream', e.message
+    res = OAS::AdXML::Response.new Nokogiri.XML(node)
+    refute res.success?
+    assert_equal 512, res.error_code
+    assert_equal 'Campaign ID already exists in Open AdStream', res.error_text
   end
 end

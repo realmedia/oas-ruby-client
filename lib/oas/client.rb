@@ -1,4 +1,4 @@
-require 'oas/response'
+require 'oas/adxml'
 require 'savon'
 
 module OAS
@@ -10,10 +10,8 @@ module OAS
       Configuration::VALID_OPTIONS_KEYS.each do |key|
         send("#{key}=", options[key])
       end
-    end
 
-    def driver
-      @driver ||= Savon::Client.new do |client|
+      @savon = Savon::Client.new do |client|
         client.endpoint endpoint.to_s
         client.namespace "http://api.oas.tfsm.com/"
         client.namespace_identifier :n1
@@ -22,12 +20,10 @@ module OAS
         client.log !!logger
       end
     end
-    attr_writer :driver
 
     def execute(request)
-      response = driver.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", request.to_xml.to_s]
-      result   = response.body[:oas_xml_request_response][:result]
-      OAS::Response.new(result)
+      response = @savon.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", request.to_xml.to_s]
+      OAS::AdXML.parse response.body[:oas_xml_request_response][:result]
     rescue Savon::HTTPError => e
       _raise_http_error!(e)
     rescue Savon::InvalidResponseError => e
@@ -42,6 +38,8 @@ module OAS
         raise OAS::Error::HTTP::Forbidden.new
       when 500
         raise OAS::Error::HTTP::InternalServerError.new
+      when 502
+        raise OAS::Error::HTTP::BadGateway.new
       when 503
         raise OAS::Error::HTTP::ServiceUnavailable.new
       when 504

@@ -1,7 +1,6 @@
 require 'oas/error'
 require 'oas/configuration'
 require 'oas/client'
-require 'oas/request'
 require 'oas/version'
 
 module OAS
