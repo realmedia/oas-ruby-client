@@ -1,12 +1,12 @@
-require 'savon'
 require 'oas/response'
+require 'savon'
 
 module OAS
   class Client
     attr_accessor *Configuration::VALID_OPTIONS_KEYS
 
-    def initialize(options={})
-      options = OAS.options.merge(options)
+    def initialize(opts={})
+      options = OAS.options.merge(opts)
       Configuration::VALID_OPTIONS_KEYS.each do |key|
         send("#{key}=", options[key])
       end
@@ -24,10 +24,10 @@ module OAS
     end
     attr_writer :driver
 
-    def request(msg)
-      doc = msg.respond_to?(:to_xml) ? msg.to_xml : msg
-      res = driver.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", doc.to_s]
-      OAS::Response.new(res.body[:oas_xml_request_response][:result])
+    def execute(request)
+      response = driver.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", request.to_xml.to_s]
+      result   = response.body[:oas_xml_request_response][:result]
+      OAS::Response.new(result)
     rescue Savon::HTTPError => e
       _raise_http_error!(e)
     rescue Savon::InvalidResponseError => e

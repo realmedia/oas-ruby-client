@@ -25,6 +25,7 @@ module OAS
     def to_s
       @doc.to_xml
     end
+    alias_method :to_xml, :to_s
 
     def to_hash
       @hash ||= parser.parse(@doc.to_xml)

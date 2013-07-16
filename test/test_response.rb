@@ -32,6 +32,6 @@ class TestResponse < MiniTest::Unit::TestCase
       OAS::Response.new(doc)
     end
     assert_equal 512, e.error_code
-    assert_equal "Campaign ID already exists in Open AdStream", e.message
+    assert_equal 'Campaign ID already exists in Open AdStream', e.message
   end
 end

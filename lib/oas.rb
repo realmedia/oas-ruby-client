@@ -1,12 +1,15 @@
 require 'oas/error'
 require 'oas/configuration'
 require 'oas/client'
+require 'oas/request'
+require 'oas/version'
 
 module OAS
   extend Configuration
 
   def self.client(options={})
-    @client ||= OAS::Client.new(options)
+    @client = OAS::Client.new(options) unless defined?(@client)
+    @client
   end
   
   def self.method_missing(method, *args, &block)
