@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/realmedia/oas-ruby-client"
   s.summary     = %q{Ruby client for the OpenAdstream API}
   s.description = %q{Ruby client for the OpenAdstream API}
+  s.licenses    = ['MIT']
 
   s.rubyforge_project = "oas"
 
