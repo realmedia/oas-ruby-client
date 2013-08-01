@@ -43,7 +43,7 @@ module OAS
       def initialize(doc)
         @doc  = doc
         @error_code = @error_text = nil
-        error = @doc.xpath('/Response//Exception').first rescue nil
+        error = @doc.xpath('.//Exception').first rescue nil
         if error
           @error_code = error['errorCode'].to_i
           @error_text = error.text
