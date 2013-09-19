@@ -16,6 +16,9 @@ module OAS
         client.namespace "http://api.oas.tfsm.com/"
         client.namespace_identifier :n1
         client.convert_request_keys_to :camelcase
+        client.open_timeout timeout.to_i
+        client.read_timeout timeout.to_i
+        client.ssl_verify_mode :none
         client.logger logger
         client.log !!logger
       end

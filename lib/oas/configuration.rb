@@ -6,6 +6,7 @@ module OAS
       :account,
       :username,
       :password,
+      :timeout,
       :logger].freeze
     
     # The endpoint that will be used to connect if none is set
@@ -19,6 +20,9 @@ module OAS
     
     # By default, don't set a password
     DEFAULT_PASSWORD = nil
+
+    # By default, set open and read timeout to 300
+    DEFAULT_TIMEOUT = 300
     
     attr_accessor *VALID_OPTIONS_KEYS
     
@@ -41,6 +45,7 @@ module OAS
       self.account    = DEFAULT_ACCOUNT
       self.username   = DEFAULT_USERNAME
       self.password   = DEFAULT_PASSWORD
+      self.timeout    = DEFAULT_TIMEOUT
       self.logger     = nil
     end
   end
