@@ -66,9 +66,21 @@ module OAS
       yield Request.new(@doc.root)
     end
 
+    def response
+      responses.first
+    end
+
+    def responses
+      @responses ||= begin
+        res = []
+        @doc.xpath('/AdXML/Response').each { |node| res << Response.new(node) }
+        res
+      end
+    end
+
     def each_response
-      @doc.xpath('/AdXML/Response').each do |node|
-        yield Response.new(node)
+      responses.each do |res|
+        yield res
       end
     end
   end
