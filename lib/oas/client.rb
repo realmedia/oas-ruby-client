@@ -26,7 +26,9 @@ module OAS
 
     def execute(request)
       response = @savon.call :oas_xml_request, message: Hash["String_1", account.to_s, "String_2", username.to_s, "String_3", password.to_s, "String_4", request.to_xml.to_s]
-      OAS::AdXML.parse response.body[:oas_xml_request_response][:result]
+      doc = OAS::AdXML.parse(response.body[:oas_xml_request_response][:result])
+      doc.http_headers = response.http.headers
+      doc
     rescue Savon::HTTPError => e
       _raise_http_error!(e)
     rescue Savon::InvalidResponseError => e
@@ -38,18 +40,19 @@ module OAS
     def _raise_http_error!(e)
       case e.http.code
       when 403
-        raise OAS::Error::HTTP::Forbidden.new
+        klass = OAS::Error::HTTP::Forbidden
       when 500
-        raise OAS::Error::HTTP::InternalServerError.new
+        klass = OAS::Error::HTTP::InternalServerError
       when 502
-        raise OAS::Error::HTTP::BadGateway.new
+        klass = OAS::Error::HTTP::BadGateway
       when 503
-        raise OAS::Error::HTTP::ServiceUnavailable.new
+        klass = OAS::Error::HTTP::ServiceUnavailable
       when 504
-        raise OAS::Error::HTTP::GatewayTimeout.new
+        klass = OAS::Error::HTTP::GatewayTimeout
       else
-        raise OAS::Error::HTTP.new(e.to_s)
+        klass = OAS::Error::HTTP
       end
+      raise klass.new(e.http.code, e.http.headers, e.http.body)
     end
 
   end

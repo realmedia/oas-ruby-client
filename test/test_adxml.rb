@@ -5,6 +5,10 @@ class TestAdXML < MiniTest::Unit::TestCase
     @doc = OAS::AdXML.new
   end
 
+  def test_http_headers
+    assert_kind_of Hash, @doc.http_headers
+  end
+
   def test_set_encoding
     assert_match 'UTF-8', @doc.to_xml
   end

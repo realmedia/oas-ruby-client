@@ -62,6 +62,11 @@ module OAS
       @doc = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') { |xml| xml.AdXML }.doc if @doc.nil?
     end
 
+    def http_headers
+      @http_headers ||= {}
+    end
+    attr_writer :http_headers
+
     def request
       yield Request.new(@doc.root)
     end

@@ -40,7 +40,6 @@ class TestClient < MiniTest::Unit::TestCase
     end
   end
 
-
   def test_raise_http_error
     stub_request(:post, @client.endpoint.to_s).to_return(:status => 599)
 

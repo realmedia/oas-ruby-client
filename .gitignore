@@ -1,6 +1,7 @@
 *.gem
 .bundle
 Gemfile.lock
+bin/
 coverage/
 doc/
 pkg/
