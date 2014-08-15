@@ -39,8 +39,18 @@ module OAS
 
     def _raise_http_error!(e)
       case e.http.code
+      when 400
+        klass = OAS::Error::HTTP::BadRequest
+      when 401
+        klass = OAS::Error::HTTP::Unauthorized
       when 403
         klass = OAS::Error::HTTP::Forbidden
+      when 404
+        klass = OAS::Error::HTTP::NotFound
+      when 422
+        klass = OAS::Error::HTTP::UnprocessableEntity
+      when 429
+        klass = OAS::Error::HTTP::TooManyRequests
       when 500
         klass = OAS::Error::HTTP::InternalServerError
       when 502

@@ -9,11 +9,16 @@ module OAS
       @headers = headers
       @body    = body
     end
-  end
 
-  class Error::HTTP::Forbidden < Error::HTTP; end
-  class Error::HTTP::BadGateway < Error::HTTP; end
-  class Error::HTTP::GatewayTimeout < Error::HTTP; end
-  class Error::HTTP::InternalServerError < Error::HTTP; end
-  class Error::HTTP::ServiceUnavailable < Error::HTTP; end
+    BadRequest   = Class.new(self)
+    Unauthorized = Class.new(self)
+    Forbidden    = Class.new(self)
+    NotFound     = Class.new(self)
+    UnprocessableEntity = Class.new(self)
+    TooManyRequests     = Class.new(self)
+    BadGateway          = Class.new(self)
+    GatewayTimeout      = Class.new(self)
+    InternalServerError = Class.new(self)
+    ServiceUnavailable  = Class.new(self)
+  end
 end

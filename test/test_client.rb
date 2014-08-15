@@ -48,10 +48,50 @@ class TestClient < MiniTest::Unit::TestCase
     end
   end
 
+  def test_raise_http_badrequest_error
+    stub_request(:post, @client.endpoint.to_s).to_return(:status => 400)
+
+    assert_raises OAS::Error::HTTP::BadRequest do
+      @client.execute(@request)
+    end
+  end
+
+  def test_raise_http_unauthorized_error
+    stub_request(:post, @client.endpoint.to_s).to_return(:status => 401)
+
+    assert_raises OAS::Error::HTTP::Unauthorized do
+      @client.execute(@request)
+    end
+  end
+
   def test_raise_http_forbidden_error
     stub_request(:post, @client.endpoint.to_s).to_return(:status => 403)
 
     assert_raises OAS::Error::HTTP::Forbidden do
+      @client.execute(@request)
+    end
+  end
+
+  def test_raise_http_notfound_error
+    stub_request(:post, @client.endpoint.to_s).to_return(:status => 404)
+
+    assert_raises OAS::Error::HTTP::NotFound do
+      @client.execute(@request)
+    end
+  end
+
+  def test_raise_http_unprocessable_entity_error
+    stub_request(:post, @client.endpoint.to_s).to_return(:status => 422)
+
+    assert_raises OAS::Error::HTTP::UnprocessableEntity do
+      @client.execute(@request)
+    end
+  end
+
+  def test_raise_http_too_many_requests_error
+    stub_request(:post, @client.endpoint.to_s).to_return(:status => 429)
+
+    assert_raises OAS::Error::HTTP::TooManyRequests do
       @client.execute(@request)
     end
   end
